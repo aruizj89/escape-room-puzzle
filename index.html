@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	<div class="container-fluid">
+
+		<div id="start" class="container">
+
+			<div class="row">
+				
+				<div class="row center" onclick="startPuzzle()">
+					<h2 class="btn btn-success">Begin Puzzles</h2>
+				</div>
+
+			</div>
+			
+		</div>
+		
+		<div id="puzzle-selection" class="container hidden">
+
+			<div class="row">
+				<div id="puzzle-one" class="puzzle-card col-lg-4">
+					<div>
+						<h2>Puzzle One</h2>
+					</div>
+				</div>
+
+				<div id="puzzle-two" class="puzzle-card col-lg-4">
+					<div>
+						<h2>Puzzle Two</h2>
+					</div>
+				</div>
+
+				<div id="puzzle-three" class="puzzle-card col-lg-4">
+					<div>
+						<h2>Puzzle Three</h2>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+		<div id="puzzle-window" class="container hidden">
+
+			<div class="row">
+				
+				<div class="row center">
+
+					<div class="number-pad">
+						<h3>1</h3>
+					</div>
+
+					<div class="number-pad">
+						<h3>2</h3>
+					</div>
+
+					<div class="number-pad">
+						<h3>3</h3>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row">
+				
+				<div class="row center">
+
+					<div class="number-pad">
+						<h3>4</h3>
+					</div>
+
+					<div class="number-pad">
+						<h3>5</h3>
+					</div>
+
+					<div class="number-pad">
+						<h3>6</h3>
+					</div>
+					
+				</div>
+
+			</div>
+
+			<div class="row">
+				
+				<div class="row center">
+
+					<div class="number-pad">
+						<h3>7</h3>
+					</div>
+
+					<div class="number-pad">
+						<h3>8</h3>
+					</div>
+
+					<div class="number-pad">
+						<h3>9</h3>
+					</div>
+					
+				</div>
+
+			</div>
+
+		</div>
+
+		<hr class="hidden">
+
+		<div id="puzzle-answer" class="container hidden">
+			
+			<div class="row">
+				
+				<div class="row center">
+					
+					<div class="number-pad">
+						
+					</div>
+
+					<div class="number-pad">
+						
+					</div>
+
+					<div class="number-pad">
+						
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+
+
+<script type="text/javascript">
+	var puzzles = ['puzzle-one', 'puzzle-two', 'puzzle-three'];
+	var activePuzzle = 0;
+
+	$(document).ready(function() {
+		$('.number-pad').click(function() {
+			numberClick($(this));
+		})
+	});
+	
+	function startPuzzle() {
+		switch (activePuzzle) {
+			case 0:
+				$('#start').animate(
+					{opacity: 0}, 
+					750, 
+					function() {
+						$('#start').remove();
+						$('#'+puzzles[activePuzzle]).animate(
+							{borderTopColor: '#eee',
+							 borderRightColor: '#eee',
+							 borderBottomColor: '#eee',
+							 borderLeftColor: '#eee'},
+							500
+						);
+					}
+				);
+				$('.hidden').animate(
+					{opacity: 1},
+					1500
+				);
+				break;
+			case 1:
+				$('#'+puzzles[activePuzzle-1]).animate(
+							{borderTopColor: '#fff',
+							 borderRightColor: '#fff',
+							 borderBottomColor: '#fff',
+							 borderLeftColor: '#fff'},
+							500
+						);
+				$('#'+puzzles[activePuzzle]).animate(
+							{borderTopColor: '#eee',
+							 borderRightColor: '#eee',
+							 borderBottomColor: '#eee',
+							 borderLeftColor: '#eee'},
+							500
+						);
+				break;
+			case 2:
+				$('#'+puzzles[activePuzzle-1]).animate(
+							{borderTopColor: '#fff',
+							 borderRightColor: '#fff',
+							 borderBottomColor: '#fff',
+							 borderLeftColor: '#fff'},
+							500
+						);
+				$('#'+puzzles[activePuzzle]).animate(
+							{borderTopColor: '#eee',
+							 borderRightColor: '#eee',
+							 borderBottomColor: '#eee',
+							 borderLeftColor: '#eee'},
+							500
+						);
+				break;
+			case 3:
+				$('#'+puzzles[activePuzzle-1]).animate(
+							{borderTopColor: '#fff',
+							 borderRightColor: '#fff',
+							 borderBottomColor: '#fff',
+							 borderLeftColor: '#fff'},
+							500
+						);
+				break;
+		}
+
+	}
+
+	function numberClick(btn) {
+		clicked = parseInt(btn.children().eq(0).html());
+		switch (activePuzzle) {
+			case 0:
+				if( clicked === 3) {
+					activePuzzle++;
+					startPuzzle();
+				}
+				break;
+			case 1:
+				if( clicked === 1) {
+					activePuzzle++;
+					startPuzzle();
+				}
+				break;
+			case 2:
+				if( clicked === 5) {
+					activePuzzle++;
+					startPuzzle();
+				}
+				break;
+		}
+	}
+
+</script>
+</html>
