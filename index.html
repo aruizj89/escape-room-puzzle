@@ -17,7 +17,7 @@
 			<div class="row">
 				
 				<div class="row center" onclick="startPuzzle()">
-					<h2 class="btn btn-success">Begin Puzzles</h2>
+					<h2 class="btn btn-light">Begin Puzzles</h2>
 				</div>
 
 			</div>
@@ -27,28 +27,47 @@
 		<div id="puzzle-selection" class="container hidden">
 
 			<div class="row">
-				<div id="puzzle-one" class="puzzle-card col-lg-4">
-					<div>
+
+				<div id="puzzle-one" class="puzzle-question">
+					How many BLIND MICE in the children's song? 
+				</div>
+
+				<div id="puzzle-two" class="puzzle-question hidden-puzzle">
+					 In Greek & Roman mythology, a cyclops has how many eyes?
+				</div>
+
+				<div id="puzzle-three" class="puzzle-question hidden-puzzle">
+					A string quintet has how many group members? 
+				</div>
+				<!-- <div id="puzzle-one" class="col-lg-4">
+					<div class="puzzle-card">
 						<h2>Puzzle One</h2>
 					</div>
 				</div>
 
-				<div id="puzzle-two" class="puzzle-card col-lg-4">
-					<div>
+				<div id="puzzle-two" class="col-lg-4">
+					<div class="puzzle-card">
 						<h2>Puzzle Two</h2>
 					</div>
 				</div>
 
-				<div id="puzzle-three" class="puzzle-card col-lg-4">
-					<div>
+				<div id="puzzle-three" class="col-lg-4">
+					<div class="puzzle-card">
 						<h2>Puzzle Three</h2>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			
 		</div>
 
 		<div id="puzzle-window" class="container hidden">
+
+			<div class="hidden-answer">
+				<p>You have done it, you are almost through...</p>
+				<p>Back in the LAB there is one more thing to do.</p>
+				<p>Use these numbers from this machine...</p>
+				<p>To open the tan trashcan and leave the scene.</p>
+			</div>
 
 			<div class="row">
 				
@@ -112,23 +131,21 @@
 
 		</div>
 
-		<hr class="hidden">
-
 		<div id="puzzle-answer" class="container hidden">
 			
 			<div class="row">
 				
 				<div class="row center">
 					
-					<div class="number-pad">
+					<div class="answer-pad">
 						
 					</div>
 
-					<div class="number-pad">
+					<div class="answer-pad">
 						
 					</div>
 
-					<div class="number-pad">
+					<div class="answer-pad">
 						
 					</div>
 
@@ -158,6 +175,7 @@
 	});
 	
 	function startPuzzle() {
+		console.log(activePuzzle);
 		switch (activePuzzle) {
 			case 0:
 				$('#start').animate(
@@ -180,46 +198,41 @@
 				);
 				break;
 			case 1:
+				$('.answer-pad').eq(0).html("<h3>3</h3>");
 				$('#'+puzzles[activePuzzle-1]).animate(
-							{borderTopColor: '#fff',
-							 borderRightColor: '#fff',
-							 borderBottomColor: '#fff',
-							 borderLeftColor: '#fff'},
-							500
-						);
+					{opacity: 0},
+					500
+				);
 				$('#'+puzzles[activePuzzle]).animate(
-							{borderTopColor: '#eee',
-							 borderRightColor: '#eee',
-							 borderBottomColor: '#eee',
-							 borderLeftColor: '#eee'},
-							500
-						);
+					{opacity: 1},
+					500
+				);
 				break;
 			case 2:
+			$('.answer-pad').eq(1).html("<h3>1</h3>");
 				$('#'+puzzles[activePuzzle-1]).animate(
-							{borderTopColor: '#fff',
-							 borderRightColor: '#fff',
-							 borderBottomColor: '#fff',
-							 borderLeftColor: '#fff'},
-							500
-						);
+					{opacity: 0},
+					500
+				);
 				$('#'+puzzles[activePuzzle]).animate(
-							{borderTopColor: '#eee',
-							 borderRightColor: '#eee',
-							 borderBottomColor: '#eee',
-							 borderLeftColor: '#eee'},
-							500
-						);
+					{opacity: 1},
+					500
+				);
 				break;
 			case 3:
+			$('.answer-pad').eq(2).html("<h3>5</h3>");
 				$('#'+puzzles[activePuzzle-1]).animate(
-							{borderTopColor: '#fff',
-							 borderRightColor: '#fff',
-							 borderBottomColor: '#fff',
-							 borderLeftColor: '#fff'},
-							500
-						);
-				break;
+					{opacity: 0},
+					500
+				);
+				$('.number-pad').animate(
+					{opacity: 0},
+					500
+				);
+				$('.hidden-answer').animate(
+					{opacity: 1},
+					500
+				);
 		}
 
 	}
