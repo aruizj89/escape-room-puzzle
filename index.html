@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Quarantine Pass</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="jq-ui/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
@@ -17,7 +17,7 @@
 			<div class="row">
 				
 				<div class="row center" onclick="startPuzzle()">
-					<h2 class="btn btn-light">Begin Puzzles</h2>
+					<h2 class="btn btn-danger" style="color: #333 !important;">Begin Puzzles</h2>
 				</div>
 
 			</div>
@@ -29,33 +29,21 @@
 			<div class="row">
 
 				<div id="puzzle-one" class="puzzle-question">
-					How many BLIND MICE in the children's song? 
+					How many strings does a violin have?
 				</div>
 
 				<div id="puzzle-two" class="puzzle-question hidden-puzzle">
-					 In Greek & Roman mythology, a cyclops has how many eyes?
+					How many BLIND MICE in the children's song? 
 				</div>
 
 				<div id="puzzle-three" class="puzzle-question hidden-puzzle">
+					 In Greek & Roman mythology, a cyclops has how many eyes?
+				</div>
+
+				<div id="puzzle-four" class="puzzle-question hidden-puzzle">
 					A string quintet has how many group members? 
 				</div>
-				<!-- <div id="puzzle-one" class="col-lg-4">
-					<div class="puzzle-card">
-						<h2>Puzzle One</h2>
-					</div>
-				</div>
-
-				<div id="puzzle-two" class="col-lg-4">
-					<div class="puzzle-card">
-						<h2>Puzzle Two</h2>
-					</div>
-				</div>
-
-				<div id="puzzle-three" class="col-lg-4">
-					<div class="puzzle-card">
-						<h2>Puzzle Three</h2>
-					</div>
-				</div> -->
+				
 			</div>
 			
 		</div>
@@ -149,6 +137,10 @@
 						
 					</div>
 
+					<div class="answer-pad">
+						
+					</div>
+
 				</div>
 
 			</div>
@@ -158,14 +150,13 @@
 	</div>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="jq-ui/jquery-ui.js"></script>
 
 
 <script type="text/javascript">
-	var puzzles = ['puzzle-one', 'puzzle-two', 'puzzle-three'];
+	var puzzles = ['puzzle-one', 'puzzle-two', 'puzzle-three','puzzle-four'];
 	var activePuzzle = 0;
 
 	$(document).ready(function() {
@@ -198,7 +189,7 @@
 				);
 				break;
 			case 1:
-				$('.answer-pad').eq(0).html("<h3>3</h3>");
+				$('.answer-pad').eq(0).html("<h3>4</h3>");
 				$('#'+puzzles[activePuzzle-1]).animate(
 					{opacity: 0},
 					500
@@ -209,7 +200,7 @@
 				);
 				break;
 			case 2:
-			$('.answer-pad').eq(1).html("<h3>1</h3>");
+			$('.answer-pad').eq(1).html("<h3>3</h3>");
 				$('#'+puzzles[activePuzzle-1]).animate(
 					{opacity: 0},
 					500
@@ -220,7 +211,18 @@
 				);
 				break;
 			case 3:
-			$('.answer-pad').eq(2).html("<h3>5</h3>");
+			$('.answer-pad').eq(2).html("<h3>1</h3>");
+				$('#'+puzzles[activePuzzle-1]).animate(
+					{opacity: 0},
+					500
+				);
+				$('#'+puzzles[activePuzzle]).animate(
+					{opacity: 1},
+					500
+				);
+				break;
+			case 4:
+			$('.answer-pad').eq(3).html("<h3>5</h3>");
 				$('#'+puzzles[activePuzzle-1]).animate(
 					{opacity: 0},
 					500
@@ -233,6 +235,8 @@
 					{opacity: 1},
 					500
 				);
+			default:
+				break;
 		}
 
 	}
@@ -241,24 +245,62 @@
 		clicked = parseInt(btn.children().eq(0).html());
 		switch (activePuzzle) {
 			case 0:
+				if( clicked === 4) {
+					activePuzzle++;
+					startPuzzle();
+				}
+				else
+					resetPuzzle();
+				break;
+			case 1:
 				if( clicked === 3) {
 					activePuzzle++;
 					startPuzzle();
 				}
+				else
+					resetPuzzle();
 				break;
-			case 1:
+			case 2:
 				if( clicked === 1) {
 					activePuzzle++;
 					startPuzzle();
 				}
+				else
+					resetPuzzle();
 				break;
-			case 2:
+			case 3:
 				if( clicked === 5) {
 					activePuzzle++;
 					startPuzzle();
 				}
+				else
+					resetPuzzle();
+				break;
+			default:
 				break;
 		}
+	}
+
+	function resetPuzzle() {
+		$('#puzzle-window').effect('shake');
+		$('#puzzle-answer').effect('shake');
+
+		$('#'+puzzles[activePuzzle]).animate(
+			{opacity: 0},
+			500
+		);
+
+		activePuzzle = 0;
+		
+		$('#'+puzzles[activePuzzle]).animate(
+			{opacity: 1},
+			500
+		);
+		
+		var answers = $('.answer-pad');
+		for (var i = 0; i < answers.length; i++)
+			answers.eq(i).empty();
+
 	}
 
 </script>

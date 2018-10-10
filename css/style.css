@@ -5,8 +5,9 @@
 
 body {
 	padding-top: 30px;
-	/*background-image: url(../img/bg.jpg);*/
+	background-image: url(../img/bg.png);
 	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 #start {
@@ -20,6 +21,8 @@ body {
 #puzzle-selection {
 	padding-top: 10vh;
 	margin-bottom: 30px;
+	font-size: 2rem;
+	font-weight: 700;
 }
 
 .puzzle-card {
@@ -27,7 +30,7 @@ body {
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 10px;
-	border-color: #fff;
+	border-color: #dc3545;
 }	
 
 #puzzle-window {
@@ -41,7 +44,7 @@ body {
 	padding-top: 25px;
 	border-style: solid;
 	border-radius: 50px;
-	border-color: #eee;	
+	border-color: #dc3545;	
 }
 
 .number-pad:hover {
@@ -49,8 +52,8 @@ body {
 }
 
 .number-pad:hover {
-	color: #fff;
-	background: #eee;
+	color: #333;
+	background: #dc3545;
 }
 
 .answer-pad {
@@ -60,7 +63,7 @@ body {
 	padding-top: 25px;
 	border-style: solid;
 	border-radius: 10px;
-	border-color: #eee;	
+	border-color: #dc3545;	
 }
 
 .center {
@@ -88,6 +91,8 @@ body {
 	position: absolute;
 	text-align: center;
 	margin: auto;
+	font-size: 1.75rem;
+	font-weight: 700;
 }
 
 .hidden-puzzle {
